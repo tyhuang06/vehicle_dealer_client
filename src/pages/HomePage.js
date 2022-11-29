@@ -10,6 +10,7 @@ import {
 	TabPanel,
 } from '@chakra-ui/react';
 import Login from '../components/auth/Login';
+import Signup from '../components/auth/Signup';
 
 const HomePage = () => {
 	const navigate = useNavigate();
@@ -37,7 +38,9 @@ const HomePage = () => {
 						<TabPanel>
 							<Login />
 						</TabPanel>
-						<TabPanel>signup</TabPanel>
+						<TabPanel>
+							<Signup />
+						</TabPanel>
 					</TabPanels>
 				</Tabs>
 			</div>

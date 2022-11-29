@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
 	Container,
 	Text,
@@ -8,8 +9,19 @@ import {
 	Tab,
 	TabPanel,
 } from '@chakra-ui/react';
+import Login from '../components/auth/Login';
 
 const HomePage = () => {
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+		if (userInfo) {
+			navigate('/');
+		}
+	}, [navigate]);
+
 	return (
 		<Container maxW="xl" className="flex flex-col items-center">
 			<div className="flex bg-white w-full justify-center p-3 rounded-md h-fit mt-10 mb-5">
@@ -22,7 +34,9 @@ const HomePage = () => {
 						<Tab className="w-full focus:shadow-none">Signup</Tab>
 					</TabList>
 					<TabPanels>
-						<TabPanel>login</TabPanel>
+						<TabPanel>
+							<Login />
+						</TabPanel>
 						<TabPanel>signup</TabPanel>
 					</TabPanels>
 				</Tabs>

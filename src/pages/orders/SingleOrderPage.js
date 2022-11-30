@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
 	Container,
 	Card,
@@ -8,13 +8,13 @@ import {
 	Divider,
 	CardFooter,
 	Text,
-	Button,
 	Stack,
 	Heading,
 } from '@chakra-ui/react';
 import { ArrowSmallLeftIcon } from '@heroicons/react/20/solid';
 import dateFormat from 'dateformat';
 import OrderService from '../../services/OrderService';
+import EditOrderModal from '../../components/orders/EditOrderModal';
 
 const SingleOrderPage = () => {
 	const [order, setOrder] = useState({});
@@ -68,14 +68,7 @@ const SingleOrderPage = () => {
 						Salesperson: {order.salesperson_id} add get api and
 						display name
 					</div>
-					<Button
-						colorScheme="teal"
-						size="sm"
-						variant="outline"
-						className="w-fit mt-2 self-end"
-					>
-						Edit Order
-					</Button>
+					<EditOrderModal order={order} />
 				</CardFooter>
 			</Card>
 		</Container>

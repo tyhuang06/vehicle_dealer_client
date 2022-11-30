@@ -65,7 +65,7 @@ const Navbar = () => {
 	return (
 		<>
 			{userInfo ? (
-				<Box className="px-4 bg-gray-100">
+				<Box className="px-4" bg="gray.100">
 					<Flex
 						h={14}
 						alignItems={'center'}

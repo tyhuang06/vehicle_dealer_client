@@ -1,7 +1,13 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const VehiclesPage = () => {
-	return <div>Vehicles Page</div>;
+	return (
+		<div>
+			<Navbar />
+			Vehicles Page
+		</div>
+	);
 };
 
 export default VehiclesPage;

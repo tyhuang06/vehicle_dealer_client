@@ -12,7 +12,6 @@ import {
 	MenuGroup,
 	MenuDivider,
 	useDisclosure,
-	useColorModeValue,
 	Stack,
 	useToast,
 } from '@chakra-ui/react';
@@ -65,95 +64,97 @@ const Navbar = () => {
 
 	return (
 		<>
-			<Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-				<Flex
-					h={14}
-					alignItems={'center'}
-					justifyContent={'space-between'}
-				>
-					<IconButton
-						size={'md'}
-						icon={
-							isOpen ? (
-								<XMarkIcon className="w-8 h-8" />
-							) : (
-								<Bars3Icon className="w-8 h-8" />
-							)
-						}
-						aria-label={'Open Menu'}
-						display={{ md: 'none' }}
-						onClick={isOpen ? onClose : onOpen}
-						className="flex items-center justify-center"
-					/>
-					<HStack spacing={8} alignItems={'center'}>
-						<Box className="font-bold">Vehicle Dealer</Box>
-						<HStack
-							as={'nav'}
-							spacing={4}
-							display={{ base: 'none', md: 'flex' }}
-						>
-							{Links.map((link) => (
-								<NavLink key={link.name}>{link}</NavLink>
-							))}
-						</HStack>
-					</HStack>
-					<Flex alignItems={'center'}>
-						<Menu>
-							<MenuButton
-								as={Button}
-								cursor={'pointer'}
-								leftIcon={
-									<UserCircleIcon className="w-8 h-8" />
-								}
-								rightIcon={
-									<ChevronDownIcon className="w-4 h-4" />
-								}
-								className="focus:outline-none rounded-full nav-user-btn"
+			{userInfo ? (
+				<Box className="px-4 bg-gray-100">
+					<Flex
+						h={14}
+						alignItems={'center'}
+						justifyContent={'space-between'}
+					>
+						<IconButton
+							size={'md'}
+							icon={
+								isOpen ? (
+									<XMarkIcon className="w-8 h-8" />
+								) : (
+									<Bars3Icon className="w-8 h-8" />
+								)
+							}
+							aria-label={'Open Menu'}
+							display={{ md: 'none' }}
+							onClick={isOpen ? onClose : onOpen}
+							className="flex items-center justify-center"
+						/>
+						<HStack spacing={8} alignItems={'center'}>
+							<Box className="font-bold">Vehicle Dealer</Box>
+							<HStack
+								as={'nav'}
+								spacing={4}
+								display={{ base: 'none', md: 'flex' }}
 							>
-								{userInfo.first_name}
-							</MenuButton>
-							<MenuList>
-								<MenuGroup title="Profile">
-									<MenuItem
-										icon={
-											<DocumentTextIcon className="w-6 h-6" />
-										}
-									>
-										My Orders
-									</MenuItem>
-									<MenuItem
-										icon={
-											<CalendarDaysIcon className="w-6 h-6" />
-										}
-									>
-										My Appointments
-									</MenuItem>
-								</MenuGroup>
-
-								<MenuDivider />
-								<MenuItem
-									icon={
-										<ArrowLeftOnRectangleIcon className="w-6 h-6" />
+								{Links.map((link) => (
+									<NavLink key={link.name}>{link}</NavLink>
+								))}
+							</HStack>
+						</HStack>
+						<Flex alignItems={'center'}>
+							<Menu>
+								<MenuButton
+									as={Button}
+									cursor={'pointer'}
+									leftIcon={
+										<UserCircleIcon className="w-8 h-8" />
 									}
-									onClick={handleLogout}
+									rightIcon={
+										<ChevronDownIcon className="w-4 h-4" />
+									}
+									className="focus:outline-none rounded-full nav-user-btn"
 								>
-									Log Out
-								</MenuItem>
-							</MenuList>
-						</Menu>
-					</Flex>
-				</Flex>
+									{userInfo ? userInfo.first_name : 'User'}
+								</MenuButton>
+								<MenuList>
+									<MenuGroup title="Profile">
+										<MenuItem
+											icon={
+												<DocumentTextIcon className="w-6 h-6" />
+											}
+										>
+											My Orders
+										</MenuItem>
+										<MenuItem
+											icon={
+												<CalendarDaysIcon className="w-6 h-6" />
+											}
+										>
+											My Appointments
+										</MenuItem>
+									</MenuGroup>
 
-				{isOpen ? (
-					<Box pb={4} display={{ md: 'none' }}>
-						<Stack as={'nav'} spacing={4}>
-							{Links.map((link) => (
-								<NavLink key={link.name}>{link}</NavLink>
-							))}
-						</Stack>
-					</Box>
-				) : null}
-			</Box>
+									<MenuDivider />
+									<MenuItem
+										icon={
+											<ArrowLeftOnRectangleIcon className="w-6 h-6" />
+										}
+										onClick={handleLogout}
+									>
+										Log Out
+									</MenuItem>
+								</MenuList>
+							</Menu>
+						</Flex>
+					</Flex>
+
+					{isOpen ? (
+						<Box pb={4} display={{ md: 'none' }}>
+							<Stack as={'nav'} spacing={4}>
+								{Links.map((link) => (
+									<NavLink key={link.name}>{link}</NavLink>
+								))}
+							</Stack>
+						</Box>
+					) : null}
+				</Box>
+			) : null}
 		</>
 	);
 };

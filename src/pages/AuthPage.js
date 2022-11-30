@@ -19,7 +19,7 @@ const HomePage = () => {
 		const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
 		if (userInfo) {
-			navigate('/');
+			navigate('/vehicles');
 		}
 	}, [navigate]);
 

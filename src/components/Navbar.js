@@ -21,6 +21,8 @@ import {
 	Bars3Icon,
 	XMarkIcon,
 	ChevronDownIcon,
+	DocumentTextIcon,
+	CalendarDaysIcon,
 } from '@heroicons/react/24/outline';
 import {
 	UserCircleIcon,
@@ -112,8 +114,20 @@ const Navbar = () => {
 							</MenuButton>
 							<MenuList>
 								<MenuGroup title="Profile">
-									<MenuItem>My Orders</MenuItem>
-									<MenuItem>My Appointments</MenuItem>
+									<MenuItem
+										icon={
+											<DocumentTextIcon className="w-6 h-6" />
+										}
+									>
+										My Orders
+									</MenuItem>
+									<MenuItem
+										icon={
+											<CalendarDaysIcon className="w-6 h-6" />
+										}
+									>
+										My Appointments
+									</MenuItem>
 								</MenuGroup>
 
 								<MenuDivider />

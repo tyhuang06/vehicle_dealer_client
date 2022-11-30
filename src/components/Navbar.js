@@ -14,16 +14,21 @@ import {
 	useDisclosure,
 	useColorModeValue,
 	Stack,
+	useToast,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	Bars3Icon,
 	XMarkIcon,
 	ChevronDownIcon,
 } from '@heroicons/react/24/outline';
-import { UserCircleIcon } from '@heroicons/react/20/solid';
+import {
+	UserCircleIcon,
+	ArrowLeftOnRectangleIcon,
+} from '@heroicons/react/20/solid';
 
 const Navbar = () => {
+	// Links for the navbar
 	const Links = [
 		{ name: 'Shop All Cars', href: '/vehicles' },
 		{ name: 'About', href: '/about' },
@@ -39,7 +44,22 @@ const Navbar = () => {
 	);
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const navigate = useNavigate();
+	const toast = useToast();
+
 	const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+	const handleLogout = () => {
+		localStorage.removeItem('userInfo');
+		toast({
+			title: 'Logout Success!',
+			status: 'success',
+			duration: 5000,
+			isClosable: true,
+			position: 'bottom',
+		});
+		navigate('/');
+	};
 
 	return (
 		<>
@@ -92,12 +112,19 @@ const Navbar = () => {
 							</MenuButton>
 							<MenuList>
 								<MenuGroup title="Profile">
-									<MenuItem>Link 1</MenuItem>
-									<MenuItem>Link 2</MenuItem>
+									<MenuItem>My Orders</MenuItem>
+									<MenuItem>My Appointments</MenuItem>
 								</MenuGroup>
 
 								<MenuDivider />
-								<MenuItem>Log Out</MenuItem>
+								<MenuItem
+									icon={
+										<ArrowLeftOnRectangleIcon className="w-6 h-6" />
+									}
+									onClick={handleLogout}
+								>
+									Log Out
+								</MenuItem>
 							</MenuList>
 						</Menu>
 					</Flex>

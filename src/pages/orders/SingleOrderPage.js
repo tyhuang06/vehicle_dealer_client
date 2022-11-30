@@ -10,11 +10,13 @@ import {
 	Text,
 	Stack,
 	Heading,
+	Button,
 } from '@chakra-ui/react';
 import { ArrowSmallLeftIcon } from '@heroicons/react/20/solid';
 import dateFormat from 'dateformat';
 import OrderService from '../../services/OrderService';
 import EditOrderModal from '../../components/orders/EditOrderModal';
+import DeleteOrderModal from '../../components/orders/DeleteOrderModal';
 
 const SingleOrderPage = () => {
 	const [order, setOrder] = useState({});
@@ -68,7 +70,10 @@ const SingleOrderPage = () => {
 						Salesperson: {order.salesperson_id} add get api and
 						display name
 					</div>
-					<EditOrderModal order={order} />
+					<div className="flex justify-end items-center">
+						<EditOrderModal order={order} />
+						<DeleteOrderModal order={order} />
+					</div>
 				</CardFooter>
 			</Card>
 		</Container>

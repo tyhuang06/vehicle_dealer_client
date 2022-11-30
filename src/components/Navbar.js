@@ -114,20 +114,24 @@ const Navbar = () => {
 								</MenuButton>
 								<MenuList>
 									<MenuGroup title="Profile">
-										<MenuItem
-											icon={
-												<DocumentTextIcon className="w-6 h-6" />
-											}
-										>
-											My Orders
-										</MenuItem>
-										<MenuItem
-											icon={
-												<CalendarDaysIcon className="w-6 h-6" />
-											}
-										>
-											My Appointments
-										</MenuItem>
+										<Link to="/orders">
+											<MenuItem
+												icon={
+													<DocumentTextIcon className="w-6 h-6" />
+												}
+											>
+												My Orders
+											</MenuItem>
+										</Link>
+										<Link to="/appointments">
+											<MenuItem
+												icon={
+													<CalendarDaysIcon className="w-6 h-6" />
+												}
+											>
+												My Appointments
+											</MenuItem>
+										</Link>
 									</MenuGroup>
 
 									<MenuDivider />

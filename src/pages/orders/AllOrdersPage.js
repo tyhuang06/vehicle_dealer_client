@@ -25,7 +25,7 @@ const AllOrdersPage = () => {
 	}, []);
 
 	return (
-		<Container className="py-8">
+		<Container className="my-8">
 			<Card>
 				<CardHeader>
 					<Heading size="md">All Orders</Heading>

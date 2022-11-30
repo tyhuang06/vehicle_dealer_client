@@ -27,6 +27,7 @@ import {
 	UserCircleIcon,
 	ArrowLeftOnRectangleIcon,
 } from '@heroicons/react/20/solid';
+import AuthService from '../services/AuthService';
 
 const Navbar = () => {
 	// Links for the navbar
@@ -50,16 +51,29 @@ const Navbar = () => {
 
 	const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
-	const handleLogout = () => {
-		localStorage.removeItem('userInfo');
-		toast({
-			title: 'Logout Success!',
-			status: 'success',
-			duration: 5000,
-			isClosable: true,
-			position: 'bottom',
-		});
-		navigate('/');
+	const handleLogout = async () => {
+		await AuthService.logout()
+			.then((res) => {
+				localStorage.removeItem('userInfo');
+				toast({
+					title: 'Logout Success!',
+					status: 'success',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+				navigate('/');
+			})
+			.catch((err) => {
+				toast({
+					title: 'Error',
+					description: err,
+					status: 'error',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+			});
 	};
 
 	return (

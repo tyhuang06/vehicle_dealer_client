@@ -10,7 +10,7 @@ import {
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosDefault from '../../axios';
+import AuthService from '../../services/AuthService';
 
 const Login = () => {
 	const [show, setShow] = useState(false);
@@ -41,41 +41,31 @@ const Login = () => {
 			return;
 		}
 
-		try {
-			const config = {
-				headers: {
-					'Content-type': 'application/json',
-				},
-			};
+		await AuthService.login({ email, password })
+			.then((res) => {
+				toast({
+					title: 'Login Success!',
+					status: 'success',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
 
-			const { data } = await axiosDefault.post(
-				'/auth/login',
-				{ email, password },
-				config
-			);
-
-			toast({
-				title: 'Login Success!',
-				status: 'success',
-				duration: 5000,
-				isClosable: true,
-				position: 'bottom',
+				localStorage.setItem('userInfo', JSON.stringify(res));
+				setLoading(false);
+				navigate('/vehicles');
+			})
+			.catch((err) => {
+				toast({
+					title: 'Error',
+					description: err.response.data,
+					status: 'error',
+					duration: 5000,
+					isClosable: true,
+					position: 'bottom',
+				});
+				setLoading(false);
 			});
-
-			localStorage.setItem('userInfo', JSON.stringify(data));
-			setLoading(false);
-			navigate('/vehicles');
-		} catch (error) {
-			toast({
-				title: 'Error',
-				description: error.response.data,
-				status: 'error',
-				duration: 5000,
-				isClosable: true,
-				position: 'bottom',
-			});
-			setLoading(false);
-		}
 	};
 
 	return (

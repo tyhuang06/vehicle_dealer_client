@@ -80,7 +80,7 @@ const Login = () => {
 
 	return (
 		<div className="p-2">
-			<FormControl id="email" isRequired className="mb-2">
+			<FormControl id="emailLogin" isRequired className="mb-2">
 				<FormLabel>Email</FormLabel>
 				<Input
 					placeholder="Enter Your Email"
@@ -88,7 +88,7 @@ const Login = () => {
 				/>
 			</FormControl>
 
-			<FormControl id="password" isRequired className="mb-2">
+			<FormControl id="passwordLogin" isRequired className="mb-2">
 				<FormLabel>Password</FormLabel>
 				<InputGroup>
 					<Input

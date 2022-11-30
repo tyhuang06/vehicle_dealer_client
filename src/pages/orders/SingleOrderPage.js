@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
 	Container,
 	Card,
@@ -10,7 +10,6 @@ import {
 	Text,
 	Stack,
 	Heading,
-	Button,
 } from '@chakra-ui/react';
 import { ArrowSmallLeftIcon } from '@heroicons/react/20/solid';
 import dateFormat from 'dateformat';

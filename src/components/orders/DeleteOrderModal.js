@@ -56,7 +56,11 @@ const DeleteOrderModal = ({ order }) => {
 						</AlertDialogBody>
 
 						<AlertDialogFooter>
-							<Button ref={cancelRef} onClick={onClose}>
+							<Button
+								ref={cancelRef}
+								onClick={onClose}
+								variant="ghost"
+							>
 								Cancel
 							</Button>
 							<Button

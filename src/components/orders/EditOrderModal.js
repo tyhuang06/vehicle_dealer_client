@@ -71,15 +71,15 @@ const EditOrderModal = ({ order }) => {
 					</ModalBody>
 
 					<ModalFooter>
+						<Button variant="ghost" onClick={handleCancel}>
+							Cancel
+						</Button>
 						<Button
 							colorScheme="blue"
-							mr={3}
+							ml={3}
 							onClick={handleSubmit}
 						>
 							Submit
-						</Button>
-						<Button variant="ghost" onClick={handleCancel}>
-							Cancel
 						</Button>
 					</ModalFooter>
 				</ModalContent>

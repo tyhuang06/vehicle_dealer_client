@@ -5,6 +5,7 @@ import AuthPage from './pages/AuthPage';
 import VehiclesPage from './pages/VehiclesPage';
 import AllOrdersPage from './pages/orders/AllOrdersPage';
 import AllAppointmentsPage from './pages/appointments/AllAppointmentsPage';
+import SingleOrderPage from './pages/orders/SingleOrderPage';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Route path="/" element={<AuthPage />}></Route>
 				<Route path="/vehicles" element={<VehiclesPage />}></Route>
 				<Route path="/orders" element={<AllOrdersPage />}></Route>
+				<Route path="/orders/:id" element={<SingleOrderPage />}></Route>
 				<Route
 					path="/appointments"
 					element={<AllAppointmentsPage />}

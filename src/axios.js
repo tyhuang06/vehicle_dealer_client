@@ -5,4 +5,10 @@ const axiosDefault = axios.create({
 	withCredentials: true,
 });
 
-export default axiosDefault;
+const config = {
+	headers: {
+		'Content-type': 'application/json',
+	},
+};
+
+export { config, axiosDefault };

@@ -1,10 +1,4 @@
-import axiosDefault from '../axios';
-
-const config = {
-	headers: {
-		'Content-type': 'application/json',
-	},
-};
+import { config, axiosDefault } from '../axios';
 
 const login = async (obj) => {
 	const { data } = await axiosDefault.post('/auth/login', obj, config);

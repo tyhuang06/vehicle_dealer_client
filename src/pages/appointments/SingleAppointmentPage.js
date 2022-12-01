@@ -23,6 +23,7 @@ import {
 import dateFormat from 'dateformat';
 import VehicleService from '../../services/VehicleService';
 import AppointmentService from '../../services/AppointmentService';
+import EditAppointmentModal from '../../components/appointments/EditAppointmentModal';
 
 const SingleAppointmentPage = () => {
 	const [appointment, setAppointment] = useState({});
@@ -118,7 +119,7 @@ const SingleAppointmentPage = () => {
 					</div>
 
 					<div className="flex justify-end items-center">
-						buttons
+						<EditAppointmentModal appointment={appointment} />
 						{/* 						<EditOrderModal order={order} />
 						<DeleteOrderModal order={order} /> */}
 					</div>

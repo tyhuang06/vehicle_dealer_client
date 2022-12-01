@@ -24,19 +24,19 @@ const EditAppointmentModal = ({ appointment }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		setNotes(appointment.notes);
-	}, [appointment.notes]);
+		setNotes(appointment.other_info);
+	}, [appointment.other_info]);
 
 	useEffect(() => {
 		setDate(dateFormat(appointment.app_date, 'yyyy-mm-dd'));
 	}, [appointment.app_date]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const appDate = date;
 
-		AppointmentService.updateReservation(appointment.app_id, {
+		await AppointmentService.updateReservation(appointment.app_id, {
 			appDate,
 			notes,
 		})

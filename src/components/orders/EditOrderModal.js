@@ -25,10 +25,10 @@ const EditOrderModal = ({ order }) => {
 		setNotes(order.notes);
 	}, [order.notes]);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		OrderService.updateOrder(order.order_id, { notes })
+		await OrderService.updateOrder(order.order_id, { notes })
 			.then((res) => {
 				onClose();
 				navigate(0);

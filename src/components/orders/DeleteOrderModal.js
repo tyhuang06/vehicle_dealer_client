@@ -17,8 +17,8 @@ const DeleteOrderModal = ({ order }) => {
 	const cancelRef = useRef();
 	const navigate = useNavigate();
 
-	const handleDelete = () => {
-		OrderService.deleteOrder(order.order_id)
+	const handleDelete = async () => {
+		await OrderService.deleteOrder(order.order_id)
 			.then((res) => {
 				onClose();
 				navigate('/orders');

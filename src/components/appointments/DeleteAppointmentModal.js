@@ -17,8 +17,8 @@ const DeleteAppointmentModal = ({ appointment }) => {
 	const cancelRef = useRef();
 	const navigate = useNavigate();
 
-	const handleDelete = () => {
-		AppointmentService.deleteReservation(appointment.app_id)
+	const handleDelete = async () => {
+		await AppointmentService.deleteReservation(appointment.app_id)
 			.then((res) => {
 				onClose();
 				navigate('/appointments');

@@ -16,7 +16,7 @@ const AppointmentOverview = ({ appoint }) => {
 				</Text>
 			</div>
 			<div className="flex items-center">
-				<Link to={`/orders/${appoint.app_id}`}>
+				<Link to={`/appointments/${appoint.app_id}`}>
 					<Button colorScheme="teal" variant="outline">
 						Details
 					</Button>

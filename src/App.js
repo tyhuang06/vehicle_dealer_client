@@ -6,6 +6,7 @@ import VehiclesPage from './pages/VehiclesPage';
 import AllOrdersPage from './pages/orders/AllOrdersPage';
 import AllAppointmentsPage from './pages/appointments/AllAppointmentsPage';
 import SingleOrderPage from './pages/orders/SingleOrderPage';
+import SingleAppointmentPage from './pages/appointments/SingleAppointmentPage';
 
 function App() {
 	return (
@@ -19,6 +20,10 @@ function App() {
 				<Route
 					path="/appointments"
 					element={<AllAppointmentsPage />}
+				></Route>
+				<Route
+					path="/appointments/:id"
+					element={<SingleAppointmentPage />}
 				></Route>
 			</Routes>
 		</div>

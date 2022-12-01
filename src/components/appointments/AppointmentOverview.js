@@ -4,7 +4,6 @@ import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
 
 const AppointmentOverview = ({ appoint }) => {
-	console.log(appoint);
 	return (
 		<Box className="flex justify-between">
 			<div>

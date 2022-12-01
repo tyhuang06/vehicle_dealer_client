@@ -12,13 +12,23 @@ import {
 	Heading,
 } from '@chakra-ui/react';
 import { ArrowSmallLeftIcon } from '@heroicons/react/20/solid';
+import {
+	SparklesIcon,
+	TruckIcon,
+	SwatchIcon,
+	UsersIcon,
+	HomeModernIcon,
+	IdentificationIcon,
+} from '@heroicons/react/24/outline';
 import dateFormat from 'dateformat';
 import OrderService from '../../services/OrderService';
+import VehicleService from '../../services/VehicleService';
 import EditOrderModal from '../../components/orders/EditOrderModal';
 import DeleteOrderModal from '../../components/orders/DeleteOrderModal';
 
 const SingleOrderPage = () => {
 	const [order, setOrder] = useState({});
+	const [vehicle, setVehicle] = useState({});
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -30,6 +40,16 @@ const SingleOrderPage = () => {
 				console.log(err);
 			});
 	}, [id]);
+
+	useEffect(() => {
+		VehicleService.getVehicleById(order.vin)
+			.then((res) => {
+				setVehicle(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, [order.vin]);
 
 	return (
 		<Container className="my-8">
@@ -46,16 +66,47 @@ const SingleOrderPage = () => {
 			<Card className="mt-2">
 				<CardBody>
 					<Image
-						src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-						alt="Green double couch with wooden legs"
+						src={vehicle.image_path}
+						alt="Photo of a car"
 						borderRadius="lg"
 					/>
 					<Stack mt="6" spacing="3">
-						<Heading size="md">Living room Sofa</Heading>
-						<Text>VIN: {order.vin}</Text>
-						<Text>Get car info by vin then display</Text>
+						<Heading size="md">
+							{vehicle.brand} {vehicle.model} {vehicle.year}
+						</Heading>
+						<Text>VIN: {vehicle.vin}</Text>
+
+						{vehicle.new_or_used === 1 ? (
+							<div className="flex items-center">
+								<SparklesIcon className="w-4 h-4" />
+								<div className="ml-1">Brand New</div>
+							</div>
+						) : (
+							<div className="flex items-center">
+								<TruckIcon className="w-4 h-4" />
+								<div className="ml-1">
+									Mileage: {vehicle.mileage}
+								</div>
+							</div>
+						)}
+						<div className="flex items-center">
+							<SwatchIcon className="w-4 h-4" />
+							<div className="ml-1">Color: {vehicle.color}</div>
+						</div>
+						<div className="flex items-center">
+							<UsersIcon className="w-4 h-4" />
+							<div className="ml-1">
+								Seats: {vehicle.num_of_seats}
+							</div>
+						</div>
+						<div className="flex items-center">
+							<HomeModernIcon className="w-4 h-4" />
+							<div className="ml-1">
+								Dealer: {vehicle.dealer_id} get name
+							</div>
+						</div>
 						<Text color="teal.600" fontSize="2xl">
-							$450
+							$ {vehicle.price}
 						</Text>
 					</Stack>
 				</CardBody>
@@ -65,9 +116,11 @@ const SingleOrderPage = () => {
 						Order Date: {dateFormat(order.order_date, 'mm/dd/yyyy')}
 					</div>
 					<div>Notes: {order.notes}</div>
-					<div>
-						Salesperson: {order.salesperson_id} add get api and
-						display name
+					<div className="flex items-center">
+						<IdentificationIcon className="w-4 h-4" />
+						<div className="ml-1">
+							Salesperson: {order.salesperson_id} get name
+						</div>
 					</div>
 					<div className="flex justify-end items-center">
 						<EditOrderModal order={order} />

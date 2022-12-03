@@ -9,7 +9,7 @@ import {
 	StackDivider,
 } from '@chakra-ui/react';
 import OrderService from '../../services/OrderService';
-import OrderOverview from '../../components/orders/OrderOverview';
+import OrderOverview from '../../components/orders/orderOverview';
 
 const AllOrdersPage = () => {
 	const [orders, setOrders] = useState([]);

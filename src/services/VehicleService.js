@@ -11,12 +11,12 @@ const getVehicleById = async (id) => {
 };
 
 const getVehicleByType = async (type) => {
-	const { data } = await axiosDefault.get(`/vehicle/${type}`);
+	const { data } = await axiosDefault.get(`/vehicle/type/${type}`);
 	return data;
 }
 
 const getVehicleByBrand = async (brand) => {
-	const { data } = await axiosDefault.get(`/vehicle/${brand}`);
+	const { data } = await axiosDefault.get(`/vehicle/brand/${brand}`);
 	return data;
 }
 

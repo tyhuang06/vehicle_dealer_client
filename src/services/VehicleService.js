@@ -11,7 +11,7 @@ const getVehicleById = async (id) => {
 };
 
 const getVehicleByType = async (type) => {
-	const { data } = await axiosDefault.get(`/vehicle/${type}`);
+	const { data } = await axiosDefault.get(`/vehicle/type/${type}`);
 	return data;
 }
 
@@ -40,8 +40,8 @@ const getVehicleAfterYear = async() => {
 	return data;
 }
 
-const getVehicleByColor = async() => {
-	const {data} = await axiosDefault.get('/vehicle/color');
+const getVehicleByColor = async(color) => {
+	const {data} = await axiosDefault.get(`/vehicle/color/${color}`);
 	return data;
 }
 

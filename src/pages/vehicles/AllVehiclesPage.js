@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import VehicleService from '../../services/VehicleService';
 import VehicleOverview from '../../components/vehicle/VehicleOverview';
+import {Link} from 'react-router-dom';
 import {
 	Container,
 	Card,
@@ -13,6 +14,7 @@ import {
 	GridItem,
 	Button,
 	Input,
+	Text,
 } from '@chakra-ui/react';
 
 
@@ -35,11 +37,26 @@ const AllVehiclesPage = () => {
 				console.log(err);
 			});
 	}, []);
-	console.log(vehicles);
+	// console.log(vehicles);
+	// const findByBrand = useCallback(() =>{
+	// 	setCurrentSearchMode("Brand");
+	// 	//todo
+	// }, [searchBrand]);
+
+
 	const onChangeSearchBrand = e => {
 		const searchBrand = e.target.value;
 		setSearchBrand(searchBrand);
-	}
+	};
+	const onChangeSearchType = e => {
+		const searchType = e.target.value;
+		setSearchType(searchType);
+	};
+	const onChangeSearchColor = e => {
+		const searchColor = e.target.value;
+		setSearchColor(searchColor);
+	};
+	
 	return (
 		<Container className="my-8">
 			<Heading>
@@ -50,18 +67,30 @@ const AllVehiclesPage = () => {
 			<Grid templateColumns = 'repeat(3, 1fr)' gap = {8}>
 				
 				<GridItem>
-					<Input placeholder = "search by brand"></Input>
-					<Button> Search </Button>
+					<Input placeholder = "search by brand" value = {searchBrand} 
+					onChange = {onChangeSearchBrand}></Input>
+					
+					<Button> <Link to ={`/vehicles/brand/${searchBrand}`}> Search</Link> 
+						{/* {(() => { if (searchBrand !== ""){
+						<Link to ={`/vehicles/brand/${searchBrand}`}> </Link> }
+						else {
+							<Link to ={`/vehicles`}> </Link>
+						}})}	 */}
+					</Button>
+				
 				</GridItem>
 				<GridItem>
-					<Input placeholder='search by type'>
+					<Input placeholder='search by type' value = {searchType}
+					onChange = {onChangeSearchType}>
 					</Input>
-					<Button> Search</Button>
+					<Button> <Link to ={`/vehicles/type/${searchType}`}> Search</Link> </Button>
 				</GridItem>
+				
 				<GridItem>
-					<Input placeholder='search by color'>
+					<Input placeholder='search by color' value = {searchColor}
+					onChange = {onChangeSearchColor}>
 					</Input>
-					<Button> Search</Button>
+					<Button> <Link to ={`/vehicles/color/${searchColor}`}> Search</Link></Button>
 				</GridItem>
 
 			</Grid>

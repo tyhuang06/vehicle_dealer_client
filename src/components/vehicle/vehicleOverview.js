@@ -40,7 +40,7 @@ const VehicleOverview = ({ vehicle }) => {
 						</Text>
                 </CardBody>
                 <CardFooter>
-                <Link to={`/vehicles/${vehicle.vin}`}>
+                <Link to={`/vehicles/id/${vehicle.vin}`}>
 					<Button colorScheme="teal" variant="outline">
 						Details
 					</Button>

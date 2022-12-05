@@ -18,8 +18,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<AuthPage />}></Route>
 				<Route path="/vehicles" element={<AllVehiclesPage />}></Route>
-				<Route path="/vehicles/:id" element={<SingleVehiclePage />}></Route>
-				<Route path="/vehicles/:brand" element={<VehiclesByBrandPage />}></Route>
+				<Route path="/vehicles/id/:id" element={<SingleVehiclePage />}></Route>
+				<Route path="/vehicles/brand/:brand" element={<VehiclesByBrandPage />}></Route>
 				{/* <Route path="/vehicles/:type" element={<AllVehiclesPage />}></Route>
 				<Route path="/vehicles/:brand" element={<AllVehiclesPage />}></Route> */}
 

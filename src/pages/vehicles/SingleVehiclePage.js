@@ -1,6 +1,6 @@
-import {react, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 import VehicleService from '../../services/VehicleService';
-import {Link, useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
 	Container,
 	Card,
@@ -16,27 +16,26 @@ import { ArrowSmallLeftIcon } from '@heroicons/react/20/solid';
 import {
 	SparklesIcon,
 	TruckIcon,
-	ClockIcon,
-    UsersIcon,
+	UsersIcon,
 	HomeModernIcon,
-	IdentificationIcon,
-	DocumentTextIcon,
-    SwatchIcon,
+	SwatchIcon,
 } from '@heroicons/react/24/outline';
+import CreateOrderModal from '../../components/orders/CreateOrderModal';
 
 const SingleVehiclePage = () => {
-    const [vehicle, setVehicle] = useState({});
-    const {id} = useParams();
-    useEffect(() => {
-        VehicleService.getVehicleById(id).then((res) => {
-            setVehicle(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    });
-    return (
-        <Container className="my-8">
+	const [vehicle, setVehicle] = useState({});
+	const { id } = useParams();
+	useEffect(() => {
+		VehicleService.getVehicleById(id)
+			.then((res) => {
+				setVehicle(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	});
+	return (
+		<Container className="my-8">
 			<Link
 				to="/vehicles"
 				className="flex items-center hover:underline w-fit rounded-md p-2"
@@ -60,7 +59,7 @@ const SingleVehiclePage = () => {
 						<Heading size="md">
 							{vehicle.brand} {vehicle.model} {vehicle.year}
 						</Heading>
-						
+
 						{vehicle.new_or_used === 1 ? (
 							<div className="flex items-center">
 								<SparklesIcon className="w-4 h-4" />
@@ -80,31 +79,34 @@ const SingleVehiclePage = () => {
 								Dealer: {vehicle.dealer_id}
 							</div>
 						</div>
-                        <div className="flex items-center">
-                            <SwatchIcon className="w-4 h-4" />
-                            <div className="ml-1">Color: {vehicle.color}</div>
-                            
-                        </div>
-                        <div className="flex items-center">
-                            <UsersIcon className="w-4 h-4" />
-                            <div className="ml-1">Seats: {vehicle.num_of_seats}</div>
-                        </div>
-                        
-                        {vehicle.is_electric_car === 1 ? (
+						<div className="flex items-center">
+							<SwatchIcon className="w-4 h-4" />
+							<div className="ml-1">Color: {vehicle.color}</div>
+						</div>
+						<div className="flex items-center">
+							<UsersIcon className="w-4 h-4" />
+							<div className="ml-1">
+								Seats: {vehicle.num_of_seats}
+							</div>
+						</div>
+
+						{vehicle.is_electric_car === 1 ? (
 							<div className="flex items-center">
 								<SparklesIcon className="w-4 h-4" />
-								<div className="ml-1">Energy source: Electric Car</div>
+								<div className="ml-1">
+									Energy source: Electric Car
+								</div>
 							</div>
 						) : (
 							<div className="flex items-center">
 								<TruckIcon className="w-4 h-4" />
 								<div className="ml-1">
-                                Energy source: Gasoline
+									Energy source: Gasoline
 								</div>
 							</div>
 						)}
-                        
-                        {/* if (vehicle.technology !== ""){
+
+						{/* if (vehicle.technology !== ""){
                             <div>
                                 Technology: {vehicle.technology}
                             </div>
@@ -114,21 +116,18 @@ const SingleVehiclePage = () => {
                                 Manufacture: {vehicle.manufacture}
                             </div>
                         } */}
-                        
-                        <Text color="teal.600" fontSize="2xl">
+
+						<Text color="teal.600" fontSize="2xl">
 							$ {vehicle.price}
 						</Text>
 					</Stack>
 				</CardBody>
 				<Divider />
 				<CardFooter className="flex flex-col">
-                    <div>
-                        Schedule a test drive
-                    </div>
+					<CreateOrderModal vehicle={vehicle} />
 				</CardFooter>
 			</Card>
 		</Container>
-
-    );
+	);
 };
 export default SingleVehiclePage;

@@ -2,7 +2,7 @@ import { React } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AuthPage from './pages/AuthPage';
-// import VehiclesPage from './pages/VehiclesPage';
+import AboutPage from './pages/AboutPage';
 import AllVehiclesPage from './pages/vehicles/AllVehiclesPage';
 import SingleVehiclePage from './pages/vehicles/SingleVehiclePage';
 import AllOrdersPage from './pages/orders/AllOrdersPage';
@@ -19,11 +19,28 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<AuthPage />}></Route>
+				<Route path="/about" element={<AboutPage />}></Route>
 				<Route path="/vehicles" element={<AllVehiclesPage />}></Route>
-				<Route path="/vehicles/id/:id" element={<SingleVehiclePage />}></Route>
-				<Route path="/vehicles/brand/:brand" element={<VehiclesByBrandPage />}></Route>
-				<Route path="/vehicles/type/:type" element={<VehiclesByTypePage />}> </Route>
-				<Route path="/vehicles/color/:color" element={<VehiclesByColorPage />}> </Route>
+				<Route
+					path="/vehicles/id/:id"
+					element={<SingleVehiclePage />}
+				></Route>
+				<Route
+					path="/vehicles/brand/:brand"
+					element={<VehiclesByBrandPage />}
+				></Route>
+				<Route
+					path="/vehicles/type/:type"
+					element={<VehiclesByTypePage />}
+				>
+					{' '}
+				</Route>
+				<Route
+					path="/vehicles/color/:color"
+					element={<VehiclesByColorPage />}
+				>
+					{' '}
+				</Route>
 				<Route path="/orders" element={<AllOrdersPage />}></Route>
 				<Route path="/orders/:id" element={<SingleOrderPage />}></Route>
 				<Route

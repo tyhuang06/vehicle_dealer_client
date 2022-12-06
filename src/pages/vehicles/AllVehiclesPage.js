@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import VehicleService from '../../services/VehicleService';
 import VehicleOverview from '../../components/vehicle/VehicleOverview';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
 	Container,
 	Card,
 	Heading,
-	CardHeader,
 	CardBody,
 	Stack,
 	StackDivider,
@@ -14,7 +13,7 @@ import {
 	GridItem,
 	Button,
 	Input,
-	Text,
+	Link,
 } from '@chakra-ui/react';
 
 const AllVehiclesPage = () => {
@@ -22,9 +21,7 @@ const AllVehiclesPage = () => {
 	const [searchBrand, setSearchBrand] = useState('');
 	const [searchType, setSearchType] = useState('');
 	const [searchColor, setSearchColor] = useState('');
-	// const [searchElectric] = useState("");
-	// const [searchPrice] = useState("");
-	const [currentSearchMode, setCurrentSearchMode] = useState('');
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		VehicleService.getAllVehicles()
@@ -54,6 +51,13 @@ const AllVehiclesPage = () => {
 		setSearchColor(searchColor);
 	};
 
+	const handleSearch = (keyword, filter) => {
+		if (keyword === '') {
+		} else {
+			navigate(`/vehicles/${filter}/${keyword}`);
+		}
+	};
+
 	return (
 		<Container className="my-8">
 			<Heading>All Vehicles</Heading>
@@ -67,12 +71,8 @@ const AllVehiclesPage = () => {
 						onChange={onChangeSearchBrand}
 					></Input>
 
-					<Button>
-						{' '}
-						<Link to={`/vehicles/brand/${searchBrand}`}>
-							{' '}
-							Search
-						</Link>
+					<Button onClick={() => handleSearch(searchBrand, 'brand')}>
+						Search
 					</Button>
 				</GridItem>
 				<GridItem>
@@ -81,12 +81,8 @@ const AllVehiclesPage = () => {
 						value={searchType}
 						onChange={onChangeSearchType}
 					></Input>
-					<Button>
-						{' '}
-						<Link to={`/vehicles/type/${searchType}`}>
-							{' '}
-							Search
-						</Link>{' '}
+					<Button onClick={() => handleSearch(searchType, 'type')}>
+						Search
 					</Button>
 				</GridItem>
 
@@ -96,41 +92,14 @@ const AllVehiclesPage = () => {
 						value={searchColor}
 						onChange={onChangeSearchColor}
 					></Input>
-					<Button>
-						{' '}
-						<Link to={`/vehicles/color/${searchColor}`}>
-							{' '}
-							Search
-						</Link>
+					<Button onClick={() => handleSearch(searchColor, 'color')}>
+						Search
 					</Button>
 				</GridItem>
 			</Grid>
-
-			{/* <Col>
-				<Form.Group >
-					<Form.Control
-					type= "text"
-					placeholder = "Search by title"
-					value = {searchBrand}
-					onChange = {onChangeSearchBrand}
-					/>
-				</Form.Group>
-				<Button
-					colorScheme="teal"
-					size="sm"
-					variant="outline"
-					className="w-fit mt-2 self-end"
-					// onClick={onOpen}
-					// onClick = {findByTitle}
-				>
-					Search
-				</Button>
-				</Col> */}
 			<br></br>
 			<Card>
 				<CardBody>
-					{/* <div>test</div> */}
-
 					<Stack divider={<StackDivider />} spacing="4">
 						{vehicles.map((onevehicle) => {
 							return (

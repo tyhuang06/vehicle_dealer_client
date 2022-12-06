@@ -13,7 +13,7 @@ import {
 	GridItem,
 	Button,
 	Input,
-	Link,
+	useToast,
 } from '@chakra-ui/react';
 
 const AllVehiclesPage = () => {
@@ -21,7 +21,9 @@ const AllVehiclesPage = () => {
 	const [searchBrand, setSearchBrand] = useState('');
 	const [searchType, setSearchType] = useState('');
 	const [searchColor, setSearchColor] = useState('');
+
 	const navigate = useNavigate();
+	const toast = useToast();
 
 	useEffect(() => {
 		VehicleService.getAllVehicles()
@@ -53,6 +55,13 @@ const AllVehiclesPage = () => {
 
 	const handleSearch = (keyword, filter) => {
 		if (keyword === '') {
+			toast({
+				title: 'Search field is empty',
+				description: 'Please enter a keyword to search',
+				status: 'error',
+				duration: 5000,
+				isClosable: true,
+			});
 		} else {
 			navigate(`/vehicles/${filter}/${keyword}`);
 		}

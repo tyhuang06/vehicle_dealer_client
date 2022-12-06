@@ -94,7 +94,7 @@ const SingleAppointmentPage = () => {
 						<div className="flex items-center">
 							<HomeModernIcon className="w-4 h-4" />
 							<div className="ml-1">
-								Dealer: {vehicle.dealer_id} get name
+								Dealer: {vehicle.dealer_id}
 							</div>
 						</div>
 					</Stack>

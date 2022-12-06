@@ -102,7 +102,7 @@ const SingleOrderPage = () => {
 						<div className="flex items-center">
 							<HomeModernIcon className="w-4 h-4" />
 							<div className="ml-1">
-								Dealer: {vehicle.dealer_id} get name
+								Dealer: {vehicle.dealer_id}
 							</div>
 						</div>
 						<Text color="teal.600" fontSize="2xl">
@@ -119,7 +119,7 @@ const SingleOrderPage = () => {
 					<div className="flex items-center">
 						<IdentificationIcon className="w-4 h-4" />
 						<div className="ml-1">
-							Salesperson: {order.salesperson_id} get name
+							Salesperson: {order.salesperson_id}
 						</div>
 					</div>
 					<div className="flex justify-end items-center">

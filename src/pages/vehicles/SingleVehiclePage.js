@@ -21,6 +21,7 @@ import {
 	SwatchIcon,
 } from '@heroicons/react/24/outline';
 import CreateOrderModal from '../../components/orders/CreateOrderModal';
+import CreateAppointmentModal from '../../components/appointments/CreateAppointmentModal';
 
 const SingleVehiclePage = () => {
 	const [vehicle, setVehicle] = useState({});
@@ -124,7 +125,10 @@ const SingleVehiclePage = () => {
 				</CardBody>
 				<Divider />
 				<CardFooter className="flex flex-col">
-					<CreateOrderModal vehicle={vehicle} />
+					<div className="flex justify-end items-center">
+						<CreateAppointmentModal vehicle={vehicle} />
+						<CreateOrderModal vehicle={vehicle} />
+					</div>
 				</CardFooter>
 			</Card>
 		</Container>

@@ -34,11 +34,6 @@ const AllVehiclesPage = () => {
 				console.log(err);
 			});
 	}, []);
-	// console.log(vehicles);
-	// const findByBrand = useCallback(() =>{
-	// 	setCurrentSearchMode("Brand");
-	// 	//todo
-	// }, [searchBrand]);
 
 	const onChangeSearchBrand = (e) => {
 		const searchBrand = e.target.value;

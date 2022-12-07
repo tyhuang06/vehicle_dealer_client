@@ -107,17 +107,6 @@ const SingleVehiclePage = () => {
 							</div>
 						)}
 
-						{/* if (vehicle.technology !== ""){
-                            <div>
-                                Technology: {vehicle.technology}
-                            </div>
-                        }
-                        if (vehicle.manufacture !== ""){
-                            <div>
-                                Manufacture: {vehicle.manufacture}
-                            </div>
-                        } */}
-
 						<Text color="teal.600" fontSize="2xl">
 							$ {vehicle.price}
 						</Text>

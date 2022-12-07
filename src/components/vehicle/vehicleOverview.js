@@ -2,12 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import {
-	Container,
 	Card,
-	CardHeader,
 	CardBody,
 	Image,
-	Divider,
 	CardFooter,
 	Text,
 	Stack,
